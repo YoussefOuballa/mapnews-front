@@ -23,29 +23,24 @@
     </head>
     <body class="bg-white text-gray-800 font-sans antialiased flex flex-col min-h-screen">
 
-        <!-- DRUPAL REGION: Header -->
+    <!-- DRUPAL REGION: Header -->
         <header x-data="{ 
-                    lastScroll: 0, 
-                    isHidden: false,
-                    handleScroll() {
-                        let currentScroll = window.pageYOffset;
-                        
-                        // If scrolling down & past the initial header height
-                        if (currentScroll > this.lastScroll && currentScroll > 110) {
-                            this.isHidden = true;
-                        } 
-                        // If scrolling up, or back at the very top
-                        else if (currentScroll < this.lastScroll || currentScroll <= 0) {
-                            this.isHidden = false;
-                        }
-                        
-                        this.lastScroll = currentScroll;
+                lastScroll: 0, 
+                isHidden: false,
+                handleScroll() {
+                    let currentScroll = window.pageYOffset;
+                    if (currentScroll > this.lastScroll && currentScroll > 150) {
+                        this.isHidden = true;
+                    } else if (currentScroll < this.lastScroll || currentScroll <= 0) {
+                        this.isHidden = false;
                     }
-                }"
-                @scroll.window="handleScroll"
-                class="sticky top-0 z-50 w-full flex flex-col shadow-sm bg-white transition-transform duration-300 ease-in-out"
-                :class="isHidden ? '-translate-y-full' : 'translate-y-0'">
-            
+                    this.lastScroll = currentScroll;
+                }
+            }"
+            @scroll.window="handleScroll"
+            class="fixed top-0 start-0 z-[100] w-full flex flex-col shadow-sm bg-white transition-transform duration-300 ease-in-out"
+            :class="isHidden ? '-translate-y-full' : 'translate-y-0'">
+        
             <!-- The Navbar -->
             <div data-include="blocks/global/header.html"></div>
             
@@ -55,7 +50,7 @@
         </header>
 
         <!-- DRUPAL REGION: Main Content -->
-        <main class="flex-grow w-full container mx-auto px-3 sm:px-6 lg:px-8 pb-4 pt-0" id="main-content">
+        <main class="flex-grow w-full container mx-auto px-4 sm:px-6 lg:px-8 pb-4 pt-[96px] lg:pt-[145px]" id="main-content">
             <!-- Injects the 3-column layout structure -->
             <div data-include="blocks/layouts/home-layout-top.html" class="max-w-7xl mx-auto px-0"></div>
 

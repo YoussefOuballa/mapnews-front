@@ -1,50 +1,71 @@
 <!-- blocks/layouts/home-layout-top.html -->
 <div class="w-full">
-    <!-- 12-column grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-12">
+    
+    <!-- ==============================================
+         DESKTOP LAYOUT (Hidden on Mobile)
+         Rock-solid 3-column grid. Safari loves this.
+         ============================================== -->
+    <div class="hidden lg:grid grid-cols-12 gap-0">
+        
         <!-- LEFT SIDEBAR -->
-        <aside class="contents lg:flex lg:flex-col lg:col-span-3 gap-6 lg:gap-8">
-            
-            <!-- Mobile Order 1: Left Sidebar Royal Activity -->
-            <div class="order-1 lg:order-none" data-include="blocks/widgets/left-sidebar-royal-activity.html"></div>
-            
-            <!-- Mobile Order 6: Royal Media -->
-            <div class="order-6 lg:order-none pb-0 lg:px-2 my-4 lg:my-0" data-include="blocks/widgets/royal-media.html"></div>
-
+        <aside class="flex flex-col col-span-3 gap-8">
+            <div data-include="blocks/widgets/left-sidebar-royal-activity.html"></div>
+            <div class="px-2" data-include="blocks/widgets/royal-media.html"></div>
         </aside>
 
         <!-- MAIN CONTENT (Center) -->
-        <section class="contents lg:flex lg:flex-col lg:col-span-6 lg:gap-3 lg:border-x border-gray-200 px-0 lg:px-4 pt-2 lg:pt-4">
-            
-            <!-- Mobile Order 2: Featured Static Hero -->
-            <div class="order-2 lg:order-none py-2 pt-3 lg:py-0" data-include="blocks/widgets/featured-hero.html"></div>
-            
-            <!-- Mobile Order 3: Secondary Item -->
-            <div class="order-3 lg:order-none" data-include="blocks/widgets/featured-secondary-item.html"></div>
-
-            <hr class="hidden lg:block border-t border-[2px] border-[#EBEBEB] lg:order-none">
-
-            <!-- Mobile Order 5: Main news feed -->
-            <div class="order-5 lg:order-none" data-include="blocks/widgets/main-news-feed.html"></div>
-
+        <section class="flex flex-col col-span-6 gap-3 border-x border-gray-200 px-4 pt-4">
+            <div data-include="blocks/widgets/featured-hero.html"></div>
+            <div data-include="blocks/widgets/featured-secondary-item.html"></div>
+            <hr class="border-t border-[2px] border-[#EBEBEB]">
+            <div data-include="blocks/widgets/main-news-feed.html"></div>
         </section>
 
         <!-- RIGHT SIDEBAR -->
-        <aside class="contents lg:flex lg:flex-col lg:col-span-3 lg:gap-3 lg:pt-4 lg:mt-0 lg:px-4">     
-            
-            <!-- Mobile Order 4: Right News List -->
-            <div class="order-4 lg:order-none border-y-[6px] border-[#EBEBEB] pt-2 py-2 mb-3 mt-2 lg:py-0 lg:border-0 lg:pt-0 lg:my-0" data-include="blocks/widgets/right-news-list.html"></div>
-
-            <!-- Mobile Order 7: Folders Banner -->
-            <div class="order-7 lg:order-none" data-include="blocks/widgets/right-folders.html"></div>
-
-            <!-- Mobile Order 8: Testimonies Banner -->
-            <div class="order-8 lg:order-none my-4 lg:my-0" data-include="blocks/widgets/right-testimonies.html"></div>
-
-            <!-- Mobile Order 9: SOS fake news List -->
-            <div class="order-9 lg:order-none" data-include="blocks/widgets/right-sos-fake-news.html"></div>
-
+        <aside class="flex flex-col col-span-3 gap-3 pt-4 px-4">     
+            <div data-include="blocks/widgets/right-news-list.html"></div>
+            <div data-include="blocks/widgets/right-folders.html"></div>
+            <div data-include="blocks/widgets/right-testimonies.html"></div>
+            <div data-include="blocks/widgets/right-sos-fake-news.html"></div>
         </aside>
 
     </div>
+
+    <!-- ==============================================
+         MOBILE LAYOUT (Hidden on Desktop)
+         Standard Flex Column in the exact order you requested.
+         Guarantees ZERO overlapping on iPhones!
+         ============================================== -->
+    <div class="flex flex-col w-full lg:hidden">
+        
+        <!-- Order 1: Left Sidebar Royal Activity -->
+        <div data-include="blocks/widgets/left-sidebar-royal-activity.html"></div>
+        
+        <!-- Order 2: Featured Static Hero -->
+        <div class="py-2 pt-3" data-include="blocks/widgets/featured-hero.html"></div>
+        
+        <!-- Order 3: Secondary Item -->
+        <div data-include="blocks/widgets/featured-secondary-item.html"></div>
+
+        <!-- Order 4: Right News List -->
+        <!-- Includes your specific mobile borders and spacing -->
+        <div class="border-y-[6px] border-[#EBEBEB] pt-2 py-2 mb-3 mt-2" data-include="blocks/widgets/right-news-list.html"></div>
+
+        <!-- Order 5: Main news feed -->
+        <div data-include="blocks/widgets/main-news-feed.html"></div>
+
+        <!-- Order 6: Royal Media -->
+        <div class="my-4" data-include="blocks/widgets/royal-media.html"></div>
+
+        <!-- Order 7: Folders Banner -->
+        <div data-include="blocks/widgets/right-folders.html"></div>
+
+        <!-- Order 8: Testimonies Banner -->
+        <div class="my-4" data-include="blocks/widgets/right-testimonies.html"></div>
+
+        <!-- Order 9: SOS fake news List -->
+        <div data-include="blocks/widgets/right-sos-fake-news.html"></div>
+
+    </div>
+
 </div>
