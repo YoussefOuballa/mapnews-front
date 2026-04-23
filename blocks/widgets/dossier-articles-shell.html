@@ -1,0 +1,57 @@
+<!-- blocks/widgets/dossier-articles-shell.html -->
+<!--
+    Article list shell dedicated to "Dossier"-style listings.
+    First article keeps the normal/full size; subsequent articles are rendered smaller
+    (tighter image, smaller headline, compact row).
+
+    Reusable anywhere you need that "featured-first + compact-rest" pattern.
+
+    Must sit inside an x-data scope providing:
+      - articles: [{ img, title, date, excerpt, url? }, …]
+      - articleTag (string, optional)
+      - category (string)              — read by pagination
+      - page, totalPages (numbers)     — read by pagination
+      - defaultArticleUrl (string, optional)
+-->
+
+<div class="flex flex-col w-full">
+
+    <template x-for="(article, idx) in articles" :key="idx">
+        <article class="grid grid-cols-1 items-start border-b border-gray-200 last:border-0"
+                 :class="idx === 0
+                    ? 'md:grid-cols-[5fr_7fr] gap-5 pb-8 mb-8 last:pb-0 last:mb-0'
+                    : 'md:grid-cols-[auto_1fr] gap-4 pb-5 mb-5 last:pb-0 last:mb-0'">
+
+            <!-- Image (first: full-width centered; rest: auto-width, left-aligned → text hugs right beside it) -->
+            <a :href="article.url || $data.defaultArticleUrl || 'article.html'"
+               class="block flex items-center overflow-hidden shrink-0"
+               :class="idx === 0 ? 'w-full justify-center' : 'w-full md:w-fit md:justify-start'">
+                <img :src="article.img" :alt="article.title"
+                     class="h-auto w-auto object-contain"
+                     :class="idx === 0 ? 'w-full max-h-[350px]' : 'w-full md:w-auto max-h-[250px] md:max-h-[180px]'">
+            </a>
+
+            <!-- Text -->
+            <div class="flex flex-col pt-1">
+                <template x-if="$data.articleTag">
+                    <span class="hero-badge text-[0.6rem] uppercase tracking-wide font-sans mb-2 self-start" x-text="$data.articleTag"></span>
+                </template>
+                <a :href="article.url || $data.defaultArticleUrl || 'article.html'" class="block group">
+                    <h3 class="font-serif font-semibold text-[#0B1D32] leading-snug group-hover:text-primary transition-colors"
+                        :class="idx === 0 ? 'text-[1.4rem] mb-3' : 'text-[1.05rem] mb-2'"
+                        x-text="article.title"></h3>
+                </a>
+                <time class="text-[#9ca3af] font-sans font-medium block"
+                      :class="idx === 0 ? 'text-[0.8rem] mb-3' : 'text-[0.7rem] mb-2'"
+                      x-text="article.date"></time>
+                <p class="text-gray-600 leading-relaxed font-sans font-normal"
+                   :class="idx === 0 ? 'text-[0.85rem]' : 'text-[0.8rem] line-clamp-2'"
+                   x-text="article.excerpt"></p>
+            </div>
+        </article>
+    </template>
+
+</div>
+
+<!-- PAGINATION (reads page, totalPages, category from outer x-data) -->
+<div data-include="blocks/global/pagination.html"></div>

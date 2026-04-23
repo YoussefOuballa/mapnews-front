@@ -1,0 +1,84 @@
+<!-- blocks/widgets/activities-hero-shell.html -->
+<!--
+    Renders the upper part of Royal/Princely Activities pages:
+      - Featured hero section (2 rows: lead article + 2 secondaries)
+      - Optional listTitle banner (conditional on `listTitle`)
+
+    The page-level title banner is rendered by each page's layout file,
+    not here.
+
+    Must sit inside an x-data scope providing:
+      - listTitle (string, optional)
+      - hero: [{ img, title, date, url?, orientation?, excerpt? }, …]    (first item = lead)
+        - excerpt (optional): lead → appears under title; secondaries → spans full card width under image+title
+-->
+
+<!-- FEATURED SECTION
+     Row 1: Lead article (full width, natural aspect image — height capped for safety)
+     Row 2: 2-col grid of the remaining hero items, aligned to the top so mismatched
+            heights don't stretch either card. Separated from row 1 by a thin top border.
+     Mobile: all items stack vertically (grid becomes 1-col). -->
+<div class="border-b border-gray-200 pb-4 mb-4 lg:pb-8 lg:mb-8">
+
+    <!-- ROW 1: LEAD ARTICLE — image left (max-h, natural aspect), text right
+         Image column auto-sizes to the image's actual width when portrait,
+         so there's no empty space (= consistent visible gap to the text). -->
+    <template x-for="(item, idx) in hero.slice(0, 1)" :key="idx">
+        <article class="grid grid-cols-1 gap-3 lg:gap-8 items-start mb-3 lg:mb-6 group"
+                 :class="item.orientation === 'portrait'
+                    ? 'md:grid-cols-[auto_1fr]'
+                    : 'md:grid-cols-[1fr_1fr]'">
+            <template x-if="item.img">
+                <a :href="item.url || $data.defaultArticleUrl || 'article.html'"
+                   class="block overflow-hidden -mx-3 md:mx-0 md:w-fit">
+                    <img :src="item.img" :alt="item.title"
+                         :class="item.orientation === 'portrait' ? 'md:max-w-[300px]' : 'md:max-w-full'"
+                         class="w-full h-auto md:w-auto md:max-h-[480px] object-cover md:object-contain">
+                </a>
+            </template>
+            <div class="flex flex-col pt-1">
+                <time class="text-gray-400 text-[16px] font-['Inter'] font-semibold leading-[1.4] tracking-normal block mb-2" x-text="item.date"></time>
+                <a :href="item.url || $data.defaultArticleUrl || 'article.html'" class="block">
+                    <h2 class="hero-title font-['Barlow_Condensed'] font-semibold text-[24px] leading-[33.57px] tracking-normal transition-colors"
+                        x-text="item.title"></h2>
+                </a>
+                <template x-if="item.excerpt">
+                    <p class="text-gray-600 leading-relaxed font-sans text-[0.95rem] font-normal mt-3" x-text="item.excerpt"></p>
+                </template>
+            </div>
+        </article>
+    </template>
+
+    <!-- ROW 2: 2-COL GRID OF SECONDARIES
+         Vertical layout — image on top, date + title + optional excerpt below.
+         Image fills column width up to max-h-[260px] on desktop. -->
+    <template x-if="hero.length > 1">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start border-t border-gray-200 pt-4 lg:pt-6">
+            <template x-for="(item, idx) in hero.slice(1)" :key="idx">
+                <article class="flex flex-col gap-3 group">
+                    <template x-if="item.img">
+                        <a :href="item.url || $data.defaultArticleUrl || 'article.html'"
+                           class="flex justify-center items-center w-full overflow-hidden">
+                            <img :src="item.img" :alt="item.title"
+                                 class="h-auto w-auto max-h-[350px] max-w-full md:max-h-[280px] object-contain">
+                        </a>
+                    </template>
+                    <div class="flex flex-col">
+                        <time class="text-gray-400 text-[14px] font-['Inter'] font-semibold leading-[1.4] tracking-normal block mb-1.5" x-text="item.date"></time>
+                        <a :href="item.url || $data.defaultArticleUrl || 'article.html'" class="block">
+                            <h3 class="hero-title font-['Barlow_Condensed'] font-semibold text-[18px] leading-[27px] tracking-normal transition-colors"
+                                x-text="item.title"></h3>
+                        </a>
+                    </div>
+                    <!-- Optional paragraph -->
+                    <template x-if="item.excerpt">
+                        <p class="text-gray-600 leading-relaxed font-sans text-[0.85rem] font-normal" x-text="item.excerpt"></p>
+                    </template>
+                </article>
+            </template>
+        </div>
+    </template>
+
+</div>
+
+<!-- listTitle banner moved — now rendered inside royal-articles-list / princely-articles-list widgets -->

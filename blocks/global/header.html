@@ -1,0 +1,390 @@
+<!-- blocks/global/header.html -->
+<div x-data="{ scrolled: false, mobileMenuOpen: false, activeMenu: null, menuTimer: null }" 
+     x-init="$watch('mobileMenuOpen', value => document.body.style.overflow = value ? 'hidden' : '')"
+     @scroll.window="scrolled = (window.pageYOffset > (scrolled ? 20 : 250))"
+     class="w-full bg-white border-b border-gray-300 relative overflow-visible transition-[height] duration-300 ease-in-out z-50"
+     :class="scrolled ? 'sm:h-[50px]' : 'sm:h-[100px]'">
+    
+    <!-- BACKGROUND PATTERN OVERLAY -->
+    <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <img src="assets/images/pattern-zelij.png" alt="Background Pattern" class="w-full h-full object-cover object-top">
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <div class="relative z-10 container mx-auto flex flex-col justify-center h-full">
+        
+        <!-- FLEX LAYOUT SWITCHER -->
+        <div class="w-full flex transition-all duration-300 px-3 ps-0 lg:px-0"
+             :class="scrolled ? 'flex-row items-center' : 'flex-row sm:flex-col sm:justify-center gap-1'">
+            
+            <!-- ==============================================
+                 GROUP 1: Logo, Slogan, Socials & Auth Buttons
+                 ============================================== -->
+            <div class="flex items-center justify-between transition-all duration-300 w-full">
+                
+                <!-- Brand (Logo + Slogan) -->
+                <div class="flex items-center">
+                    <a href="/" class="shrink-0 block">
+                        <img src="assets/images/logo.png" alt="MAP Logo" class="w-auto object-contain transition-all duration-300 h-[50px]">
+                    </a>
+                    
+                    <a href="/" class="ps-2 flex flex-col justify-center transition-all duration-300"
+                         :class="scrolled ? 'h-[35px]' : 'h-[50px]'">
+                        <span class="font-serif text-[#0b1a30] leading-[1.15] font-medium transition-all duration-300 whitespace-nowrap"
+                              :class="scrolled ? 'text-[0.8rem]' : 'text-[0.9rem]'">
+                            L'information est sacrée,<br>Le commentaire est libre
+                        </span>
+                    </a>
+                </div>
+
+                <!-- TOP RIGHT: Social Icons & Auth (Subscribe | Login) -->
+                <div class="hidden sm:flex items-center gap-4 absolute end-0 transition-all origin-top"
+                    :class="scrolled 
+                        ? 'top-[0px] opacity-0 invisible duration-100 ease-out scale-95' 
+                        : 'top-[10px] opacity-100 visible duration-300 delay-150 ease-in scale-100'">
+                    
+                    <!-- Social Icons  -->
+                    <div class="flex items-center gap-3 me-2">
+                        <a href="https://www.facebook.com/maghrebpressagency" target="_blank" rel="noopener noreferrer" class="text-[#0b1a30] hover:text-primary transition-colors text-[1rem]" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/MAP_Information" target="_blank" rel="noopener noreferrer" class="text-[#0b1a30] hover:text-primary transition-colors text-[1rem]" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="https://www.instagram.com/agence_map" target="_blank" rel="noopener noreferrer" class="text-[#0b1a30] hover:text-primary transition-colors text-[1rem]" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/user/MAPTVMaroc" target="_blank" rel="noopener noreferrer" class="text-[#0b1a30] hover:text-primary transition-colors text-[1rem]" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="https://www.linkedin.com/company/maghreb-arabe-presse" target="_blank" rel="noopener noreferrer" class="text-[#0b1a30] hover:text-primary transition-colors text-[1rem]" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="https://whatsapp.com/channel/0029VanBf0k5kg7AVVCfQv1s" target="_blank" rel="noopener noreferrer" class="text-[#0b1a30] hover:text-primary transition-colors text-[1rem]" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+
+                    <!-- Auth Links -->
+                    <a href="#" class="font-sans font-medium text-[#0b1a30] text-[0.85rem] hover:text-primary hover:underline hover:font-semibold transition-colors">S'abonner</a>
+                    <div class="h-[18px] w-[1px] bg-[#0B1D32]"></div>
+                    <a href="#" class="font-sans font-medium text-[#0b1a30] text-[0.85rem] hover:text-primary hover:underline hover:font-semibold transition-colors">Connexion</a>
+                </div>
+            </div>
+
+            <!-- ==============================================
+                 GROUP 2: Navigation Menu & Tools
+                 ============================================== -->
+            <div class="flex items-center justify-between transition-all duration-300"
+                 :class="scrolled ? 'sm:flex-grow' : 'sm:w-full'">
+                
+                <!-- Desktop Navigation Menu (MEGA MENU TRIGGERS) -->
+                <nav class="hidden xl:flex items-center gap-5 lg:gap-6 font-sans font-semibold text-[#0b1a30] transition-all duration-300 static"
+                     :class="scrolled ? 'text-[0.8rem]' : 'text-[0.9rem]'">
+                     
+                    <a href="/" @mouseenter="clearTimeout(menuTimer); activeMenu = null" class="border-b-[2px] border-[#0b1a30] pb-0.5 font-bold hover:text-primary hover:border-primary transition-colors whitespace-nowrap py-2">Accueil</a>
+                    
+                    <!-- TRIGGER 1: Activités royales -->
+                    <a href="#" @mouseenter="clearTimeout(menuTimer); activeMenu = 'royal'" @mouseleave="menuTimer = setTimeout(() => { activeMenu = null }, 300)" 
+                       class="flex items-center gap-1.5 border-b-[2px] border-transparent pb-0.5 hover:text-primary transition-colors py-2 whitespace-nowrap">
+                        Activités royales <i class="fa-solid fa-chevron-down text-[0.75rem] mt-0.5 transition-transform duration-200" :class="activeMenu === 'royal' ? 'rotate-180 text-primary' : ''"></i>
+                    </a>
+
+                    <a href="princely-activities.html" @mouseenter="clearTimeout(menuTimer); activeMenu = null" class="border-b-[2px] border-transparent pb-0.5 hover:text-primary transition-colors whitespace-nowrap py-2">Activités princières</a>
+
+                    <!-- TRIGGER 2: Actualités -->
+                    <a href="#" @mouseenter="clearTimeout(menuTimer); activeMenu = 'news'" @mouseleave="menuTimer = setTimeout(() => { activeMenu = null }, 300)" 
+                       class="flex items-center gap-1.5 border-b-[2px] border-transparent pb-0.5 hover:text-primary transition-colors py-2 whitespace-nowrap">
+                       Actualités <i class="fa-solid fa-chevron-down text-[0.75rem] mt-0.5 transition-transform duration-200" :class="activeMenu === 'news' ? 'rotate-180 text-primary' : ''"></i>
+                    </a>
+
+                    <a href="#" @mouseenter="clearTimeout(menuTimer); activeMenu = null" class="border-b-[2px] border-transparent pb-0.5 hover:text-primary transition-colors py-2 whitespace-nowrap">SOS Fake News</a>
+                    <a href="folders.html" @mouseenter="clearTimeout(menuTimer); activeMenu = null" class="border-b-[2px] border-transparent pb-0.5 hover:text-primary transition-colors py-2 whitespace-nowrap">Dossiers</a>
+                    
+                    <!-- TRIGGER 3: MAP Médias -->
+                    <a href="#" @mouseenter="clearTimeout(menuTimer); activeMenu = 'media'" @mouseleave="menuTimer = setTimeout(() => { activeMenu = null }, 300)" 
+                       class="flex items-center gap-1.5 border-b-[2px] border-transparent pb-0.5 hover:text-primary transition-colors py-2 whitespace-nowrap">
+                        MAP Médias <i class="fa-solid fa-chevron-down text-[0.75rem] mt-0.5 transition-transform duration-200" :class="activeMenu === 'media' ? 'rotate-180 text-primary' : ''"></i>
+                    </a>
+                    
+                    <!-- TRIGGER 4: Maroc -->
+                    <a href="#" @mouseenter="clearTimeout(menuTimer); activeMenu = 'morocco'" @mouseleave="menuTimer = setTimeout(() => { activeMenu = null }, 300)" 
+                       class="flex items-center gap-1.5 border-b-[2px] border-transparent pb-0.5 hover:text-primary transition-colors py-2 whitespace-nowrap">
+                        Maroc <i class="fa-solid fa-chevron-down text-[0.75rem] mt-0.5 transition-transform duration-200" :class="activeMenu === 'morocco' ? 'rotate-180 text-primary' : ''"></i>
+                    </a>
+                    
+                    <a href="http://www.map.ma/en" target="_blank" rel="noopener noreferrer" @mouseenter="clearTimeout(menuTimer); activeMenu = null" class="border-b-[2px] border-transparent pb-0.5 hover:text-primary transition-colors py-2 whitespace-nowrap">Map</a>
+                    
+                </nav>
+
+                <!-- Mobile Hamburger (Visible on small screens) -->
+                <button @click="mobileMenuOpen = !mobileMenuOpen" class="xl:hidden text-[#0b1a30] focus:outline-none rounded-md hover:text-primary">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+
+                <!-- Tools (Search & Language) -->
+                <div class="hidden sm:flex items-center gap-4 lg:gap-5 shrink-0 transition-all duration-300" @mouseenter="clearTimeout(menuTimer); activeMenu = null">
+                    
+                    <!-- SEARCH BAR DROPDOWN -->
+                    <div class="relative" 
+                        :class="scrolled 
+                            ? 'opacity-0 invisible duration-100 ease-out scale-95' 
+                            : 'opacity-100 visible duration-300 delay-150 ease-in scale-100'"
+                        x-data="{ searchOpen: false }" @click.away="searchOpen = false">
+                        <button @click="searchOpen = !searchOpen" class="text-[#0b1a30] hover:text-primary transition-colors focus:outline-none flex items-center py-2">
+                            <i class="fa-solid fa-magnifying-glass transition-all duration-300"
+                               :class="scrolled ? 'text-[1.1rem]' : 'text-[1.25rem]'"></i>
+                        </button>
+
+                        <div x-show="searchOpen" x-transition.opacity.duration.200ms style="display: none;" 
+                             class="absolute top-full mt-0 end-0 w-[280px] sm:w-[350px] bg-white shadow-xl border border-gray-100 p-4 z-50 rounded-sm flex gap-2">
+                            <input type="text" placeholder="Search news..." class="flex-grow border border-gray-300 rounded-[4px] px-3 py-2 text-sm focus:outline-none focus:border-primary transition-colors">
+                            <button class="bg-[#005bab] text-white px-4 py-2 rounded-[4px] text-sm font-semibold hover:bg-[#004280] transition-colors">Search</button>
+                        </div>
+                    </div>
+
+                    <!-- LANGUAGE DROPDOWN -->
+                    <div class="relative" x-data="{ langOpen: false, langTimer: null }" 
+                         @mouseenter="clearTimeout(langTimer); langOpen = true" 
+                         @mouseleave="langTimer = setTimeout(() => { langOpen = false }, 250)">
+                        <button class="flex items-center gap-2.5 text-[#0b1a30] hover:text-primary transition-colors focus:outline-none py-2">
+                            <i class="fa-solid fa-globe transition-all duration-300"
+                               :class="scrolled ? 'text-[1.1rem]' : 'text-[1.25rem]'"></i>
+                            <span class="font-sans font-semibold border-b-[2px] border-[#0b1a30] pb-0.5 transition-all duration-300"
+                                  :class="scrolled ? 'text-[0.8rem]' : 'text-[0.9rem]'">Français</span>
+                            <i class="fa-solid fa-chevron-down text-[0.75rem] mt-0.5 transition-transform duration-200" :class="langOpen ? 'rotate-180' : ''"></i>
+                        </button>
+                        
+                        <div x-show="langOpen" x-transition.opacity.duration.200ms style="display: none;" class="absolute top-full mt-0 end-0 w-36 bg-white shadow-lg border border-gray-100 py-2 flex flex-col z-50 rounded-sm">
+                            <a href="#" class="px-4 py-2 hover:bg-gray-50 text-sm font-sans font-semibold text-[#0b1a30] transition-colors">Français</a>
+                            <a href="#" class="px-4 py-2 hover:bg-gray-50 text-sm font-sans font-semibold text-gray-600 hover:text-primary transition-colors">العربية</a> 
+                            <a href="#" class="px-4 py-2 hover:bg-gray-50 text-sm font-sans font-semibold text-gray-600 hover:text-primary transition-colors">English</a>
+                            <a href="#" class="px-4 py-2 hover:bg-gray-50 text-sm font-sans font-semibold text-gray-600 hover:text-primary transition-colors">ⵜⴰⵎⴰⵣⵉⵖⵜ</a> 
+                            <a href="#" class="px-4 py-2 hover:bg-gray-50 text-sm font-sans font-semibold text-gray-600 hover:text-primary transition-colors">Español</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ==============================================
+         FULL-BLEED MEGA MENUS (Le Figaro Style)
+         ============================================== -->
+    
+    <!-- Mega Menu 1: Activités royales -->
+    <!-- FIX: Added @mouseenter and @mouseleave with the timeout canceler -->
+    <div x-show="activeMenu === 'royal'" 
+         @mouseenter="clearTimeout(menuTimer); activeMenu = 'royal'" 
+         @mouseleave="menuTimer = setTimeout(() => { activeMenu = null }, 300)"
+         x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
+         x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-2"
+         style="display: none;" 
+         class="absolute top-full start-0 w-full bg-white shadow-[0_20px_30px_rgba(0,0,0,0.1)] border-t-[3px] border-[#005bab] z-40 py-8">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-4 divide-x divide-gray-100 px-8">
+                <div class="flex flex-col gap-3 px-6 first:ps-0">
+                    <a href="royal-activities.html" class="text-[0.95rem] font-sans font-medium text-gray-700 hover:text-primary hover:translate-x-1 transition-all">Activités royales</a>
+                </div>
+                <div class="flex flex-col gap-3 px-6">
+                    <a href="#" class="text-[0.95rem] font-sans font-medium text-gray-700 hover:text-primary hover:translate-x-1 transition-all">Discours et Messages Royaux</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mega Menu 2: Actualités -->
+    <div x-show="activeMenu === 'news'" 
+         @mouseenter="clearTimeout(menuTimer); activeMenu = 'news'" 
+         @mouseleave="menuTimer = setTimeout(() => { activeMenu = null }, 300)"
+         x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
+         x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-2"
+         style="display: none;" 
+         class="absolute top-full start-0 w-full bg-white shadow-[0_20px_30px_rgba(0,0,0,0.1)] border-t-[3px] border-[#005bab] z-40 py-5">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-4 divide-x divide-gray-100 px-8">
+                <div class="flex flex-col gap-4 px-6 first:ps-0">
+                    <a href="category.html?c=Politique" class="text-[1rem] font-sans text-gray-800 hover:text-primary transition-colors">Politique</a>
+                    <a href="category.html?c=Économie" class="text-[1rem] font-sans text-gray-800 hover:text-primary transition-colors">Économie</a>
+                </div>
+                <div class="flex flex-col gap-4 px-6">
+                    <a href="category.html?c=Social" class="text-[1rem] font-sans text-gray-800 hover:text-primary transition-colors">Social</a>
+                    <a href="category.html?c=Culture" class="text-[1rem] font-sans text-gray-800 hover:text-primary transition-colors">Culture</a>
+                </div>
+                <div class="flex flex-col gap-4 px-6">
+                    <a href="category.html?c=Sport" class="text-[1rem] font-sans text-gray-800 hover:text-primary transition-colors">Sport</a>
+                    <a href="category.html?c=Régional" class="text-[1rem] font-sans text-gray-800 hover:text-primary transition-colors">Régional</a>
+                </div>
+                <div class="flex flex-col gap-4 px-6">
+                    <a href="category.html?c=Général" class="text-[1rem] font-sans text-gray-800 hover:text-primary transition-colors">Général</a>
+                    <a href="category.html?c=Monde" class="text-[1rem] font-sans text-gray-800 hover:text-primary transition-colors">Monde</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mega Menu 3: MAP Médias -->
+    <div x-show="activeMenu === 'media'" 
+         @mouseenter="clearTimeout(menuTimer); activeMenu = 'media'" 
+         @mouseleave="menuTimer = setTimeout(() => { activeMenu = null }, 300)"
+         x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
+         x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-2"
+         style="display: none;" 
+         class="absolute top-full start-0 w-full bg-white shadow-[0_20px_30px_rgba(0,0,0,0.1)] border-t-[3px] border-[#005bab] z-40 py-8">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-4 divide-x divide-gray-100 px-8">
+                <div class="flex flex-col gap-3 px-6 first:ps-0">
+                    <a href="https://www.mapphoto.ma/" target="_blank" class="text-[1rem] font-sans text-gray-800 hover:text-primary transition-colors">MAP Photo</a>
+                </div>
+                <div class="flex flex-col gap-3 px-6">
+                    <a href="https://www.mapinfographie.ma/" target="_blank" class="text-[1rem] font-sans text-gray-800 hover:text-primary transition-colors">MAP Infographie</a>
+                </div>
+                <div class="flex flex-col gap-3 px-6">
+                    <a href="https://www.maptv.ma/" target="_blank" class="text-[1rem] font-sans text-gray-800 hover:text-primary transition-colors">MAP TV</a>
+                </div>
+                <div class="flex flex-col gap-3 px-6">
+                    <a href="https://www.mapaudio.ma/" target="_blank" class="text-[1rem] font-sans text-gray-800 hover:text-primary transition-colors">MAP Audio</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mega Menu 4: Maroc -->
+    <div x-show="activeMenu === 'morocco'" 
+         @mouseenter="clearTimeout(menuTimer); activeMenu = 'morocco'" 
+         @mouseleave="menuTimer = setTimeout(() => { activeMenu = null }, 300)"
+         x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
+         x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-2"
+         style="display: none;" 
+         class="absolute top-full start-0 w-full bg-white shadow-[0_20px_30px_rgba(0,0,0,0.1)] border-t-[3px] border-[#005bab] z-40 py-8">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-4 divide-x divide-gray-100 px-8">
+                <div class="flex flex-col gap-3 px-6 first:ps-0">
+                    <a href="#" class="text-[1rem] font-sans text-gray-800 hover:text-primary transition-colors">Le Roi</a>
+                </div>
+                <div class="flex flex-col gap-3 px-6">
+                    <a href="#" class="text-[1rem] font-sans text-gray-800 hover:text-primary transition-colors">La constitution</a>
+                </div>
+                <div class="flex flex-col gap-3 px-6">
+                    <a href="#" class="text-[1rem] font-sans text-gray-800 hover:text-primary transition-colors">Le gouvernement</a>
+                </div>
+                <div class="flex flex-col gap-3 px-6">
+                    <a href="#" class="text-[1rem] font-sans text-gray-800 hover:text-primary transition-colors">Le parlement</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==============================================
+        NEW: MOBILE BACKDROP OVERLAY
+        ============================================== -->
+    <div x-show="mobileMenuOpen" 
+         x-transition.opacity.duration.300ms 
+         @click="mobileMenuOpen = false"
+         style="display: none;" 
+         class="xl:hidden absolute top-full start-0 w-screen h-screen bg-black/60 z-40 cursor-pointer">
+    </div>
+
+    <!-- ==============================================
+         MOBILE MENU ACCORDION (UNTOUCHED)
+         ============================================== -->
+    <div x-show="mobileMenuOpen" x-transition style="display: none;" class="xl:hidden w-full bg-white border-t border-gray-100 absolute start-0 top-full shadow-lg z-50 max-h-[80vh] overflow-y-auto">
+        <ul class="flex flex-col py-2">
+            <li><a href="/" class="block px-6 py-3 font-sans font-semibold text-primary bg-blue-50">Accueil</a></li>
+            <li><a href="royal-activities.html" class="block px-6 py-3 font-sans font-semibold text-[#0b1a30] border-t border-gray-50 hover:bg-gray-50 transition-colors">Activités royales</a></li>
+            <li><a href="princely-activities.html" class="block px-6 py-3 font-sans font-semibold text-[#0b1a30] border-t border-gray-50 hover:bg-gray-50 transition-colors">Activités princières</a></li>
+
+            <li x-data="{ open: false }" class="border-t border-gray-50">
+                <button @click="open = !open" class="w-full flex items-center justify-between px-6 py-3 font-sans font-semibold text-[#0b1a30] hover:bg-gray-50 transition-colors focus:outline-none">
+                   Actualités
+                    <i class="fa-solid fa-chevron-down text-[0.7rem] transition-transform duration-200" :class="open ? 'rotate-180 text-primary' : ''"></i>
+                </button>
+                <ul x-show="open" x-transition class="bg-gray-50 flex flex-col border-t border-gray-100" style="display: none;">
+                    <li><a href="category.html?c=Politique" class="block px-10 py-2.5 text-sm text-gray-600 hover:text-primary transition-colors border-b border-gray-100 last:border-0">Politique</a></li>
+                    <li><a href="category.html?c=Économie" class="block px-10 py-2.5 text-sm text-gray-600 hover:text-primary transition-colors border-b border-gray-100 last:border-0">Economie</a></li>
+                    <li><a href="category.html?c=Social" class="block px-10 py-2.5 text-sm text-gray-600 hover:text-primary transition-colors border-b border-gray-100 last:border-0">Social</a></li>
+                    <li><a href="category.html?c=Culture" class="block px-10 py-2.5 text-sm text-gray-600 hover:text-primary transition-colors border-b border-gray-100 last:border-0">Culture</a></li>
+                    <li><a href="category.html?c=Sport" class="block px-10 py-2.5 text-sm text-gray-600 hover:text-primary transition-colors border-b border-gray-100 last:border-0">Sport</a></li>
+                    <li><a href="category.html?c=Régional" class="block px-10 py-2.5 text-sm text-gray-600 hover:text-primary transition-colors border-b border-gray-100 last:border-0">Régional</a></li>
+                    <li><a href="category.html?c=Général" class="block px-10 py-2.5 text-sm text-gray-600 hover:text-primary transition-colors border-b border-gray-100 last:border-0">Général</a></li>
+                    <li><a href="category.html?c=Monde" class="block px-10 py-2.5 text-sm text-gray-600 hover:text-primary transition-colors">Monde</a></li>
+                </ul>
+            </li>
+
+            <li><a href="folders.html" class="block px-6 py-3 font-sans font-semibold text-[#0b1a30] border-t border-gray-50 hover:bg-gray-50 transition-colors">Dossiers</a></li>
+
+            <li x-data="{ open: false }" class="border-t border-gray-50">
+                <button @click="open = !open" class="w-full flex items-center justify-between px-6 py-3 font-sans font-semibold text-[#0b1a30] hover:bg-gray-50 transition-colors focus:outline-none">
+                    MAP Médias
+                    <i class="fa-solid fa-chevron-down text-[0.7rem] transition-transform duration-200" :class="open ? 'rotate-180 text-primary' : ''"></i>
+                </button>
+                <ul x-show="open" x-transition class="bg-gray-50 flex flex-col border-t border-gray-100" style="display: none;">
+                    <li><a href="https://www.mapphoto.ma/" target="_blank" rel="noopener noreferrer" class="block px-10 py-2.5 text-sm text-gray-600 hover:text-primary transition-colors border-b border-gray-100">MAP Photo</a></li>
+                    <li><a href="https://www.mapinfographie.ma/" target="_blank" rel="noopener noreferrer" class="block px-10 py-2.5 text-sm text-gray-600 hover:text-primary transition-colors border-b border-gray-100">MAP Infographie</a></li>
+                    <li><a href="https://www.maptv.ma/" target="_blank" rel="noopener noreferrer" class="block px-10 py-2.5 text-sm text-gray-600 hover:text-primary transition-colors border-b border-gray-100">MAP TV</a></li>
+                    <li><a href="https://www.mapaudio.ma/" target="_blank" rel="noopener noreferrer" class="block px-10 py-2.5 text-sm text-gray-600 hover:text-primary transition-colors">MAP Audio</a></li>
+                </ul>
+            </li>
+
+            <li x-data="{ open: false }" class="border-t border-gray-50">
+                <button @click="open = !open" class="w-full flex items-center justify-between px-6 py-3 font-sans font-semibold text-[#0b1a30] hover:bg-gray-50 transition-colors focus:outline-none">
+                    Maroc
+                    <i class="fa-solid fa-chevron-down text-[0.7rem] transition-transform duration-200" :class="open ? 'rotate-180 text-primary' : ''"></i>
+                </button>
+                <ul x-show="open" x-transition class="bg-gray-50 flex flex-col border-t border-gray-100" style="display: none;">
+                    <li><a href="#" class="block px-10 py-2.5 text-sm text-gray-600 hover:text-primary transition-colors border-b border-gray-100">Le Roi</a></li>
+                    <li><a href="#" class="block px-10 py-2.5 text-sm text-gray-600 hover:text-primary transition-colors border-b border-gray-100">La constitution</a></li>
+                    <li><a href="#" class="block px-10 py-2.5 text-sm text-gray-600 hover:text-primary transition-colors border-b border-gray-100">Le gouvernement</a></li>
+                    <li><a href="#" class="block px-10 py-2.5 text-sm text-gray-600 hover:text-primary transition-colors border-b border-gray-100">Le parlement</a></li>
+                </ul>
+            </li>
+
+            <li><a href="http://www.map.ma/en" target="_blank" rel="noopener noreferrer" class="block px-6 py-3 font-sans font-semibold text-[#0b1a30] border-t border-gray-50 hover:bg-gray-50 transition-colors">Map</a></li>
+
+            <!-- Mobile Socials & Auth Links -->
+            <li class="sm:hidden flex flex-col items-center justify-center gap-3 py-5 bg-white border border-gray-200">
+                <div class="flex items-center gap-4 mb-2">
+                    <a href="https://www.facebook.com/maghrebpressagency" target="_blank" rel="noopener noreferrer" class="text-[#0b1a30] hover:text-primary transition-colors text-[1rem]" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://twitter.com/MAP_Information" target="_blank" rel="noopener noreferrer" class="text-[#0b1a30] hover:text-primary transition-colors text-[1rem]" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="https://www.instagram.com/agence_map" target="_blank" rel="noopener noreferrer" class="text-[#0b1a30] hover:text-primary transition-colors text-[1rem]" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/user/MAPTVMaroc" target="_blank" rel="noopener noreferrer" class="text-[#0b1a30] hover:text-primary transition-colors text-[1rem]" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://www.linkedin.com/company/maghreb-arabe-presse" target="_blank" rel="noopener noreferrer" class="text-[#0b1a30] hover:text-primary transition-colors text-[1rem]" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://whatsapp.com/channel/0029VanBf0k5kg7AVVCfQv1s" target="_blank" rel="noopener noreferrer" class="text-[#0b1a30] hover:text-primary transition-colors text-[1rem]" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="#" class="font-sans text-[#0b1a30] text-[1rem] hover:text-primary hover:underline hover:font-semibold transition-colors">S'abonner</a>
+                    <div class="h-[20px] w-[1px] bg-gray-300"></div>
+                    <a href="#" class="font-sans text-[#0b1a30] text-[1rem] hover:text-primary hover:underline hover:font-semibold transition-colors">Connexion</a>
+                </div>
+            </li>
+            <li class="sm:hidden flex flex-col items-center justify-center gap-3 py-4">
+                <div class="flex items-center gap-4 lg:gap-5 shrink-0 transition-all duration-300" @mouseenter="clearTimeout(menuTimer); activeMenu = null">
+                    
+                    <!-- SEARCH BAR DROPDOWN -->
+                    <div class="relative" 
+                        x-data="{ searchOpen: false }" @click.away="searchOpen = false">
+                        <button @click="searchOpen = !searchOpen" class="text-[#0b1a30] hover:text-primary transition-colors focus:outline-none flex items-center py-2">
+                            <i class="fa-solid fa-magnifying-glass transition-all duration-300 text-[1.25rem]"></i>
+                        </button>
+
+                        <div x-show="searchOpen" x-transition.opacity.duration.200ms style="display: none;" 
+                             class="absolute top-full mt-0 end-0 w-[280px] sm:w-[350px] bg-white shadow-xl border border-gray-100 p-4 z-50 rounded-sm flex gap-2">
+                            <input type="text" placeholder="Search news..." class="flex-grow border border-gray-300 rounded-[4px] px-3 py-2 text-sm focus:outline-none focus:border-primary transition-colors">
+                            <button class="bg-[#005bab] text-white px-4 py-2 rounded-[4px] text-sm font-semibold hover:bg-[#004280] transition-colors">Search</button>
+                        </div>
+                    </div>
+
+                    <!-- LANGUAGE DROPDOWN -->
+                    <div class="relative" x-data="{ langOpen: false, langTimer: null }" 
+                         @mouseenter="clearTimeout(langTimer); langOpen = true" 
+                         @mouseleave="langTimer = setTimeout(() => { langOpen = false }, 250)">
+                        <button class="flex items-center gap-2.5 text-[#0b1a30] hover:text-primary transition-colors focus:outline-none py-2">
+                            <i class="fa-solid fa-globe transition-all duration-300 text-[1.25rem]"></i>
+                            <span class="font-sans text-[0.9rem] font-semibold border-b-[2px] border-[#0b1a30] pb-0.5 transition-all duration-300">Français</span>
+                            <i class="fa-solid fa-chevron-down text-[0.75rem] mt-0.5 transition-transform duration-200" :class="langOpen ? 'rotate-180' : ''"></i>
+                        </button>
+                        
+                        <div x-show="langOpen" x-transition.opacity.duration.200ms style="display: none;" class="absolute top-full mt-0 end-0 w-36 bg-white shadow-lg border border-gray-100 py-2 flex flex-col z-50 rounded-sm">
+                            <a href="#" class="px-4 py-2 hover:bg-gray-50 text-sm font-sans font-semibold text-[#0b1a30] transition-colors">Français</a>
+                            <a href="#" class="px-4 py-2 hover:bg-gray-50 text-sm font-sans font-semibold text-gray-600 hover:text-primary transition-colors">العربية</a> 
+                            <a href="#" class="px-4 py-2 hover:bg-gray-50 text-sm font-sans font-semibold text-gray-600 hover:text-primary transition-colors">English</a>
+                            <a href="#" class="px-4 py-2 hover:bg-gray-50 text-sm font-sans font-semibold text-gray-600 hover:text-primary transition-colors">ⵜⴰⵎⴰⵣⵉⵖⵜ</a> 
+                            <a href="#" class="px-4 py-2 hover:bg-gray-50 text-sm font-sans font-semibold text-gray-600 hover:text-primary transition-colors">Español</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+</div>

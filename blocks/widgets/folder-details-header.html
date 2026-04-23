@@ -1,0 +1,40 @@
+<!-- blocks/widgets/folder-details-header.html -->
+<div class="flex flex-col w-full">
+
+    <!-- BREADCRUMB -->
+    <nav class="flex items-start flex-wrap text-[#191919] font-medium text-[0.8rem] font-sans mb-4">
+        <a href="/" class="hover:text-primary transition-colors">Accueil</a>
+        <span class="mx-2">&gt;</span>
+        <a href="folders.html" class="hover:text-primary transition-colors">Dossiers</a>
+        <span class="mx-2 hidden lg:block">&gt;</span>
+        <span class="font-bold hidden lg:block">Fête du Trône</span>
+    </nav>
+
+    <!-- IMAGE + BUTTONS ROW — image on the left, 3 stacked buttons on the right -->
+    <div class="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-4 md:gap-6 items-stretch">
+
+        <!-- Image — edge-to-edge on mobile (breaks out of main's px-3), bordered box on md+ -->
+        <div class="-mx-3 md:mx-0">
+            <img src="assets/images/folder/fete-trone.jpg"
+                 alt="Fête du Trône"
+                 class="w-full h-full max-h-[360px] object-cover md:border md:border-gray-100">
+        </div>
+
+        <!-- Buttons (stacked vertically) -->
+        <div class="flex flex-col gap-3 justify-center">
+            <a href="dossier-section.html"
+               class="w-full h-[32px] bg-[#F4F4F4] border border-[#AEAEAE] text-[#191919] hover:bg-gray-200 transition-colors font-sans font-semibold text-[14px] text-center px-[15px] py-[6px] flex items-center justify-center">
+                Discours
+            </a>
+            <a href="dossier-section.html"
+               class="w-full h-[32px] bg-[#F4F4F4] border border-[#AEAEAE] text-[#191919] hover:bg-gray-200 transition-colors font-sans font-semibold text-[14px] text-center px-[15px] py-[6px] flex items-center justify-center">
+                Activités royales et princières
+            </a>
+            <a href="dossier-section.html"
+               class="w-full h-[32px] bg-[#F4F4F4] border border-[#AEAEAE] text-[#191919] hover:bg-gray-200 transition-colors font-sans font-semibold text-[14px] text-center px-[15px] py-[6px] flex items-center justify-center">
+                Projets de développement et témoignages
+            </a>
+        </div>
+
+    </div>
+</div>

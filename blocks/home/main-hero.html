@@ -1,0 +1,254 @@
+<!-- blocks/main-hero.html -->
+<div x-data="{ current: 0, total: 4 }" class="flex flex-col w-full">
+  <!-- Slides Wrapper 
+         Added 'items-start' so slides anchor to the top edge and never float vertically 
+    -->
+  <div
+    class="w-full grid [grid-template-areas:'hero-stack'] relative overflow-hidden rounded-lg items-start"
+  >
+    <!-- ================= SLIDE 1 ================= -->
+    <div
+      x-show="current === 0"
+      x-transition:enter="transition-all ease-out duration-500 z-10 relative"
+      x-transition:enter-start="opacity-0 scale-[0.98]"
+      x-transition:enter-end="opacity-100 scale-100"
+      x-transition:leave="transition-all ease-in duration-300 z-0 relative"
+      x-transition:leave-start="opacity-100"
+      x-transition:leave-end="opacity-0"
+      class="[grid-area:hero-stack] bg-white grid grid-cols-1 md:grid-cols-[1.2fr_1fr] gap-6 lg:gap-5 w-full origin-top"
+    >
+      <!-- Changed origin-center to origin-top so the zoom effect doesn't pull the top edge down -->
+
+      <!-- Left Text Content -->
+      <!-- Removed justify-center so text naturally starts at the top corner -->
+      <div class="flex flex-col pt-1 pb-4">
+        <span class="hero-badge mb-4">Royal activities</span>
+
+        <a href="article.html">
+          <h2
+            class="hero-title text-3xl md:text-[1.75rem] leading-[1.15] mb-4 transition-colors font-serif"
+          >
+            HM the King Performs Eid Al-Fitr Prayer in Rabat, Receives Greetings
+            on Joyous Occasion
+          </h2>
+        </a>
+
+        <div class="flex items-center text-gray-500 text-sm font-sans mb-4">
+          <i class="fa-regular fa-clock me-2 text-lg"></i>
+          <time>25 March 2026</time>
+        </div>
+
+        <p class="text-gray-700 leading-relaxed font-sans text-sm text-justify">
+          Rabat - His Majesty King Mohammed VI, Commander of the Faithful, may
+          God assist Him, accompanied by HRH Crown Prince Moulay El Hassan, HRH
+          Prince Moulay Rachid and HH Prince Moulay Ahmed, performed on Friday
+          the Eid Al-Fitr prayer at the "Ahl Fez" mosque in Mechouar in Rabat,
+          and received greetings on this joyous occasion.
+          <a
+            href="article.html"
+            class="font-bold text-black hover:text-primary transition-colors ms-1"
+            >Full article</a
+          >
+        </p>
+      </div>
+
+      <!-- Right Image Content -->
+      <div class="w-full flex items-start">
+        <img
+          src="assets/images/placeholder/king.png"
+          alt="HM The King"
+          class="w-full h-auto rounded-lg shadow-sm"
+        />
+      </div>
+    </div>
+
+    <!-- ================= SLIDE 2 ================= -->
+    <div
+      x-show="current === 1"
+      style="display: none"
+      x-transition:enter="transition-all ease-out duration-500 z-10 relative"
+      x-transition:enter-start="opacity-0 scale-[0.98]"
+      x-transition:enter-end="opacity-100 scale-100"
+      x-transition:leave="transition-all ease-in duration-300 z-0 relative"
+      x-transition:leave-start="opacity-100"
+      x-transition:leave-end="opacity-0"
+      class="[grid-area:hero-stack] bg-white grid grid-cols-1 md:grid-cols-[1.2fr_1fr] gap-6 lg:gap-8 w-full origin-top"
+    >
+      <!-- Removed justify-center here as well -->
+      <div class="flex flex-col pt-1 pb-4">
+        <span class="hero-badge mb-4">Top News</span>
+        <a href="#">
+          <h2
+            class="hero-title text-3xl md:text-[1.75rem] leading-[1.15] mb-4 transition-colors font-serif"
+          >
+            Morocco Launches New International Investment Initiative
+          </h2>
+        </a>
+        <div class="flex items-center text-gray-500 text-sm font-sans mb-4">
+          <i class="fa-regular fa-clock me-2 text-lg"></i>
+          <time>26 March 2026</time>
+        </div>
+        <!-- Shortened text for Slide 2 to test the height difference -->
+        <p class="text-gray-700 leading-relaxed font-sans text-sm text-justify">
+          Rabat - His Majesty King Mohammed VI, Commander of the Faithful, may
+          God assist Him, accompanied by HRH Crown Prince Moulay El Hassan, HRH
+          Prince Moulay Rachid and HH Prince Moulay Ahmed, performed on Friday
+          the Eid Al-Fitr prayer at the "Ahl Fez" mosque in Mechouar in Rabat,
+          and received greetings on this joyous occasion.
+          <a
+            href="#"
+            class="font-bold text-black hover:text-primary transition-colors ms-1"
+            >Full article</a
+          >
+        </p>
+      </div>
+
+      <div class="w-full flex items-start">
+        <img
+          src="assets/images/placeholder/placeholder-2.png"
+          alt="Investment Meeting"
+          class="w-full h-auto rounded-lg shadow-sm"
+        />
+      </div>
+    </div>
+
+     <!-- ================= SLIDE 3 ================= -->
+    <div
+      x-show="current === 2"
+      x-transition:enter="transition-all ease-out duration-500 z-10 relative"
+      x-transition:enter-start="opacity-0 scale-[0.98]"
+      x-transition:enter-end="opacity-100 scale-100"
+      x-transition:leave="transition-all ease-in duration-300 z-0 relative"
+      x-transition:leave-start="opacity-100"
+      x-transition:leave-end="opacity-0"
+      class="[grid-area:hero-stack] bg-white grid grid-cols-1 md:grid-cols-[1.2fr_1fr] gap-6 lg:gap-8 w-full origin-top"
+    >
+      <!-- Changed origin-center to origin-top so the zoom effect doesn't pull the top edge down -->
+
+      <!-- Left Text Content -->
+      <!-- Removed justify-center so text naturally starts at the top corner -->
+      <div class="flex flex-col pt-1 pb-4">
+        <span class="hero-badge mb-4">Royal activities</span>
+
+        <a href="#">
+          <h2
+            class="hero-title text-3xl md:text-[1.75rem] leading-[1.15] mb-4 transition-colors font-serif"
+          >
+            HM the King Performs Eid Al-Fitr Prayer in Rabat, Receives Greetings
+            on Joyous Occasion
+          </h2>
+        </a>
+
+        <div class="flex items-center text-gray-500 text-sm font-sans mb-4">
+          <i class="fa-regular fa-clock me-2 text-lg"></i>
+          <time>25 March 2026</time>
+        </div>
+
+        <p class="text-gray-700 leading-relaxed font-sans text-sm text-justify">
+          Rabat - His Majesty King Mohammed VI, Commander of the Faithful, may
+          God assist Him, accompanied by HRH Crown Prince Moulay El Hassan, HRH
+          Prince Moulay Rachid and HH Prince Moulay Ahmed, performed on Friday
+          the Eid Al-Fitr prayer at the "Ahl Fez" mosque in Mechouar in Rabat,
+          and received greetings on this joyous occasion.
+          <a
+            href="#"
+            class="font-bold text-black hover:text-primary transition-colors ms-1"
+            >Full article</a
+          >
+        </p>
+      </div>
+
+      <!-- Right Image Content -->
+      <div class="w-full flex items-start">
+        <img
+          src="assets/images/placeholder/king.png"
+          alt="HM The King"
+          class="w-full h-auto rounded-lg shadow-sm"
+        />
+      </div>
+    </div>
+
+    <!-- ================= SLIDE 4 ================= -->
+    <div
+      x-show="current === 3"
+      style="display: none"
+      x-transition:enter="transition-all ease-out duration-500 z-10 relative"
+      x-transition:enter-start="opacity-0 scale-[0.98]"
+      x-transition:enter-end="opacity-100 scale-100"
+      x-transition:leave="transition-all ease-in duration-300 z-0 relative"
+      x-transition:leave-start="opacity-100"
+      x-transition:leave-end="opacity-0"
+      class="[grid-area:hero-stack] bg-white grid grid-cols-1 md:grid-cols-[1.2fr_1fr] gap-6 lg:gap-8 w-full origin-top"
+    >
+      <!-- Removed justify-center here as well -->
+      <div class="flex flex-col pt-1 pb-4">
+        <span class="hero-badge mb-4">Top News</span>
+        <a href="#">
+          <h2
+            class="hero-title text-3xl md:text-[1.75rem] leading-[1.15] mb-4 transition-colors font-serif"
+          >
+            Morocco Launches New International Investment Initiative
+          </h2>
+        </a>
+        <div class="flex items-center text-gray-500 text-sm font-sans mb-4">
+          <i class="fa-regular fa-clock me-2 text-lg"></i>
+          <time>26 March 2026</time>
+        </div>
+        <!-- Shortened text for Slide 2 to test the height difference -->
+        <p class="text-gray-700 leading-relaxed font-sans text-sm text-justify">
+          Rabat - His Majesty King Mohammed VI, Commander of the Faithful, may
+          God assist Him, accompanied by HRH Crown Prince Moulay El Hassan, HRH
+          Prince Moulay Rachid and HH Prince Moulay Ahmed, performed on Friday
+          the Eid Al-Fitr prayer at the "Ahl Fez" mosque in Mechouar in Rabat,
+          and received greetings on this joyous occasion.
+          <a
+            href="#"
+            class="font-bold text-black hover:text-primary transition-colors ms-1"
+            >Full article</a
+          >
+        </p>
+      </div>
+
+      <div class="w-full flex items-start">
+        <img
+          src="assets/images/placeholder/placeholder-2.png"
+          alt="Investment Meeting"
+          class="w-full h-auto rounded-lg shadow-sm"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- Slider Controls -->
+  <div class="relative flex items-center justify-center h-12">
+    <!-- Dots -->
+    <div class="absolute start-0 flex items-center gap-2">
+      <template x-for="(slide, index) in total" :key="index">
+        <button
+          @click="current = index"
+          :class="current === index ? 'active' : 'inactive'"
+          class="slider-dot focus:outline-none"
+          :aria-label="'Go to slide ' + (index + 1)"
+        ></button>
+      </template>
+    </div>
+
+    <!-- Navigation Arrows -->
+    <div class="flex items-center gap-3">
+      <button
+        @click="current = current === 0 ? total - 1 : current - 1"
+        class="slider-arrow"
+        aria-label="Previous slide"
+      >
+        <i class="fa-solid fa-chevron-left text-sm rtl:rotate-180"></i>
+      </button>
+      <button
+        @click="current = current === total - 1 ? 0 : current + 1"
+        class="slider-arrow"
+        aria-label="Next slide"
+      >
+        <i class="fa-solid fa-chevron-right text-sm rtl:rotate-180"></i>
+      </button>
+    </div>
+  </div>
+</div>

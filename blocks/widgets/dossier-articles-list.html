@@ -1,0 +1,83 @@
+<!-- blocks/widgets/dossier-articles-list.html -->
+<!--
+    Self-contained Dossier article list block.
+    Renders: list-title banner ("A lire sur ce dossier") + article list + pagination.
+
+    Used on: folder-details.html (below the folder header).
+    Owns its own x-data so it can be reused independently.
+-->
+<div x-data="{
+    category: 'dossier',
+    defaultArticleUrl: 'article.html',
+    listTitle: 'A lire sur ce dossier',
+    page: 1,
+    totalPages: 3,
+    articles: [
+        {
+            img: 'assets/images/royal_activities/royal-1.jpg',
+            title: `SM le Roi préside à Rabat un Conseil des ministres`,
+            date: '10 Avril 2026',
+            excerpt: `Sa Majesté le Roi Mohammed VI, que Dieu L'assiste, a présidé, jeudi au Palais Royal de Rabat, un Conseil des ministres, indique un communiqué du Cabinet Royal.`
+        },
+        {
+            img: 'assets/images/folder/sd-2.png',
+            title: `La nouvelle génération de programmes de développement territorial intégré, une transformation globale pour l'amélioration des conditions de vie des citoyens, conformément à la vision Royale (Universitaire)`,
+            date: '10 Avril 2026',
+            excerpt: `La nouvelle génération de programmes de développement territorial intégré, qui intervient en application de Hautes orientations de Sa Majesté le Roi Mohammed VI, constitue une transformation opérationnelle globale visant à améliorer les conditions de vie des citoyens dans les différentes régions du Royaume, a affirmé, vendredi, le professeur de droit public à l'université Cadi Ayyad de Marrakech, Atiq Essaid.`
+        },
+        {
+            img: 'assets/images/folder/sd-3.png',
+            title: `Les priorités des PDTI sont fixées à partir des besoins exprimés localement, conformément aux Hautes Orientations Royales (économiste)`,
+            date: '10 Avril 2026',
+            excerpt: `La nouvelle génération de Programmes de Développement Territorial Intégré (PDTI) est fondée sur une approche novatrice qui fixe les priorités à partir des besoins exprimés par les citoyens et met l'accent sur la valorisation des spécificités locales, conformément aux Hautes Orientations de Sa Majesté le Roi Mohammed VI, a affirmé l'économiste Mohamed Jadri.`
+        },
+        {
+            img: 'assets/images/folder/sd-4.png',
+            title: `La nouvelle génération de PDTI, une orientation stratégique vers l'intégration territoriale et la cohérence régionale (expert)`,
+            date: '17 Avril 2026',
+            excerpt: `La nouvelle génération de Programmes de Développement Territorial Intégré (PDTI) qui intervient en application des Hautes Orientations de Sa Majesté le Roi Mohammed VI, constitue une orientation stratégique visant à mettre en valeur les spécificités locales et à réaliser l'intégration territoriale et la cohérence régionale, a indiqué vendredi le Professeur de sciences politiques et de droit public, Mohamed Bouden.`
+        },
+        {
+            img: 'assets/images/folder/sd-5.jpg',
+            title: `Les nouveaux PDTI seront adaptés aux besoins de chaque région (Universitaire)`,
+            date: '17 Avril 2026',
+            excerpt: `Les nouveaux Programmes de Développement Territorial Intégré (PDTI) seront davantage adaptés aux besoins propres à chaque région et tiendront compte de leurs spécificités, de manière à assurer un développement équitable et juste au niveau de l'ensemble des régions du Royaume, a affirmé, vendredi, le professeur d'Economie et de Droit des affaires à l'Université Hassan II de Casablanca, Badr Zaher Al Azrak.`
+        },
+        {
+            img: 'assets/images/folder/sd-6.jpg',
+            title: `PDTI : Nouveau paradigme de gouvernance au coeur de l'action publique (Doyenne de faculté)`,
+            date: '17 Avril 2026',
+            excerpt: `La nouvelle génération de Programmes de développement territorial intégré (PDTI) s'inscrit dans une nouvelle dynamique de gouvernance plaçant le citoyen au cœur du processus décisionnel de l'action publique, a affirmé la doyenne de la Faculté des Sciences Juridiques, Économiques et Sociales d'Aïn Chock, Fatim Zahra Alami.`
+        },
+        {
+            img: 'assets/images/folder/sd-1.png',
+            title: `L'ingénierie territoriale introduite par les PDTI s'appuie sur les principes d'innovation, d'intégration et de mesure de l'impact (Universitaire)`,
+            date: '17 Avril 2026',
+            excerpt: `Sous l'impulsion de Sa Majesté le Roi Mohammed VI, l'ingénierie territoriale introduite par la nouvelle génération de Programmes de Développement Territorial Intégré (PDTI), s'appuie sur les principes d'innovation, d'intégration et de mesure de l'impact, a souligné le doyen de l'Institut des Sciences Politiques, Juridiques et Sociales (ISPJS) à l'Université Mundiapolis, Ali Lahrichi.`
+        },
+        {
+            img: 'assets/images/folder/sd-0.png',
+            title: `Les PDTI traduisent une transformation majeure du processus de développement au Maroc (acteur associatif)`,
+            date: '17 Avril 2026',
+            excerpt: `Rabat - La République de l'Équateur a exprimé, vendredi, sa haute appréciation du Leadership de Sa Majesté le Roi Mohammed VI en Afrique, tout en saluant les réformes structurantes engagées par le Maroc en faveur du développement politique, économique et social et de la consolidation de sa stabilité et de sa prospérité.`
+        }
+    ],
+    init() {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('p')) this.page = parseInt(params.get('p'));
+        // Hide the 'A lire sur ce dossier' banner when this widget is included on the dossier-section page
+        if (window.location.pathname.includes('dossier-section')) {
+            this.listTitle = '';
+        }
+    }
+ }">
+
+    <!-- LIST TITLE BANNER — default grey/black -->
+    <template x-if="listTitle">
+        <h2 class="bg-[#E8EBEE] text-black font-sans font-bold text-2xl leading-8 tracking-normal p-2.5 flex items-center gap-2.5 mb-5" x-text="listTitle"></h2>
+    </template>
+
+    <!-- Article list + pagination -->
+    <div data-include="blocks/widgets/dossier-articles-shell.html"></div>
+
+</div>

@@ -1,0 +1,34 @@
+<!-- blocks/layouts/royal-activities-layout.html -->
+<div class="w-full">
+
+    <!-- FULL-BLEED PAGE TITLE BANNER (extends to viewport edges via negative margins) -->
+    <div class="bg-[#9F8E75] relative w-screen left-1/2 -translate-x-1/2 mb-0 md:mb-6">
+        <div class="container mx-auto px-3 lg:px-0 py-3 md:py-10">
+            <h1 class="text-white font-sans font-bold text-xl md:text-4xl leading-tight md:leading-10 tracking-normal text-center md:text-start">
+                Activités Royales
+            </h1>
+        </div>
+    </div>
+
+    <!-- 2-col grid: main content + sidebar (sidebar slides under the banner) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+
+        <!-- MAIN CONTENT (9 cols) -->
+        <section class="order-1 lg:order-1 lg:col-span-9 flex flex-col gap-4 lg:border-r border-gray-200 lg:pe-12">
+            <div data-include="blocks/widgets/royal-activities-news-list.html"></div>
+        </section>
+
+        <!-- RIGHT SIDEBAR (3 cols) — shared with princely-activities -->
+        <aside class="order-2 lg:order-2 lg:col-span-3 flex flex-col gap-5">
+            <!-- Multimedia Royale Grid -->
+            <div data-include="blocks/widgets/royal-media.html"></div>
+                                        
+            <!-- Folders Banner -->
+            <div data-include="blocks/widgets/right-folders.html"></div>
+
+            <!-- Testimonies Banner -->
+            <div data-include="blocks/widgets/right-testimonies.html"></div>
+        </aside>
+
+    </div>
+</div>

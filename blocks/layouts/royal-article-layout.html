@@ -1,0 +1,22 @@
+<!-- blocks/layouts/royal-article-layout.html -->
+<div class="w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+
+        <!-- MAIN CONTENT -->
+        <section class="lg:col-span-9 flex flex-col lg:border-r border-gray-200 lg:pe-8">
+            <!-- Article body -->
+            <div data-include="blocks/widgets/royal-article-body.html"></div>
+
+            <!-- Full royal article list below the article body (same widget as the listing page) -->
+            <div class="mt-4" data-include="blocks/widgets/royal-articles-list.html"></div>
+        </section>
+
+        <!-- RIGHT SIDEBAR (shared with princely article) -->
+        <aside class="order-2 lg:order-2 lg:col-span-3 flex flex-col gap-5">
+            <div data-include="blocks/widgets/royal-media.html"></div>
+            <div data-include="blocks/widgets/right-folders.html"></div>
+            <div data-include="blocks/widgets/right-testimonies.html"></div>
+        </aside>
+
+    </div>
+</div>

@@ -1,0 +1,45 @@
+<!-- blocks/layouts/category-layout.html -->
+<div class="w-full">
+    <!-- 12-column grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-2 lg:gap-4">
+        <!-- MAIN CONTENT (Center) -->
+        <section class="order-1 lg:order-1 lg:col-span-9 flex flex-col gap-4 lg:border-r border-gray-200 lg:pe-12">
+            <!-- Top part of the news list -->
+            <div data-include="blocks/widgets/category-news-list.html"></div>
+        </section>
+
+        <!-- RIGHT SIDEBAR -->
+        <aside class="order-2 lg:order-2 lg:col-span-3 flex flex-col gap-2 lg:gap-3">
+            
+            <!-- Multimedia Royale Grid -->
+            <div data-include="blocks/widgets/royal-media.html"></div>
+
+            <div class="border-y-[6px] border-[#EBEBEB] pt-2 py-2 mb-2 mt-2 lg:py-0 lg:border-0 lg:pt-0 lg:my-0" data-include="blocks/widgets/right-news-list.html"></div>
+                        
+            <!-- Folders Banner -->
+            <div data-include="blocks/widgets/right-folders.html"></div>
+
+            <!-- Testimonies Banner -->
+            <div data-include="blocks/widgets/right-testimonies.html"></div>
+
+            <div class="my-2 lg:my-0" data-include="blocks/widgets/right-sos-fake-news.html"></div>
+
+            <!-- FAAPA Block -->
+            <div data-include="blocks/widgets/right-faapa.html"></div>
+
+            <!-- Whatsapp channel Block -->
+            <div data-include="blocks/widgets/right-wa-channel.html"></div>
+
+            <!-- Ads vertical Block -->
+            <div data-include="blocks/widgets/right-ads-vertical-1.html"></div>
+
+            <!-- Live Radio Stream Block -->
+            <div data-include="blocks/widgets/right-radio-stream.html"></div>
+
+            <!-- Ads vertical Block -->
+            <div data-include="blocks/widgets/right-ads-vertical-2.html"></div>
+
+        </aside>
+
+    </div>
+</div>

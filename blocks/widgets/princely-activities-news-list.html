@@ -1,0 +1,40 @@
+<!-- blocks/widgets/princely-activities-news-list.html -->
+<!--
+    Princely Activities listing page content:
+      - Hero (3 featured items) via activities-hero-shell
+      - Article list + pagination via princely-articles-list widget
+
+    Hero data lives here; article list data lives in princely-articles-list.html
+    (which is also reused on princely-article.html).
+-->
+<div x-data="{
+    defaultArticleUrl: 'princely-article.html',
+    hero: [
+        {
+            img: 'assets/images/royal_activities/princely-h-1.jpg',
+            title: `SAR le Prince Moulay Rachid préside à Meknès l'ouverture de la 18e édition du Salon International de l'Agriculture au Maroc`,
+            date: '14 April 2026',
+            excerpt: `Son Altesse Royale le Prince Moulay Rachid a présidé, lundi au Mechouar Stinia-Sahrij Souani à Meknès, la cérémonie d'ouverture de la 18e édition du Salon International de l'Agriculture au Maroc (SIAM), organisée sous le Haut Patronage de Sa Majesté le Roi Mohammed VI, du 20 au 28 avril, sous le thème «&nbsp;Durabilité de la production animale et souveraineté alimentaire&nbsp;».`
+        },
+        {
+            img: 'assets/images/royal_activities/princely-h-2.jpeg',
+            title: `Sur Ordre de Sa Majesté le Roi, SAR le Prince Héritier Moulay El Hassan inaugure la «&nbsp;Tour Mohammed VI&nbsp;», un emblème de modernité et symbole du rayonnement des deux villes jumelles de Rabat et Salé`,
+            date: '20 mars 2026',
+            excerpt: `Sur Ordre de Sa Majesté le Roi Mohammed VI, que Dieu L'assiste, Son Altesse Royale le Prince Héritier Moulay El Hassan, a procédé, lundi sur la rive droite de Bouregreg, à l'inauguration de la «&nbsp;Tour Mohammed VI&nbsp;», une nouvelle icône architecturale et un emblème de modernité qui symbolise l'émergence et le rayonnement des deux villes jumelles de Rabat et Salé, sous l'impulsion du Souverain.`
+        },
+        {
+            img: '',
+            title: `Sur Ordre de Sa Majesté le Roi, SAR le Prince Héritier Moulay El Hassan inaugure la «&nbsp;Tour Mohammed VI&nbsp;», un emblème de modernité et symbole du rayonnement des deux villes jumelles de Rabat et Salé`,
+            date: '20 mars 2026',
+            excerpt: `Sur Ordre de Sa Majesté le Roi Mohammed VI, que Dieu L'assiste, Son Altesse Royale le Prince Héritier Moulay El Hassan, a procédé, lundi sur la rive droite de Bouregreg, à l'inauguration de la «&nbsp;Tour Mohammed VI&nbsp;», une nouvelle icône architecturale et un emblème de modernité qui symbolise l'émergence et le rayonnement des deux villes jumelles de Rabat et Salé, sous l'impulsion du Souverain.`
+        }
+    ]
+ }">
+
+    <!-- Hero (lead + 2 secondaries) -->
+    <div data-include="blocks/widgets/activities-hero-shell.html"></div>
+
+    <!-- Article list widget (self-contained, reused on princely-article.html) -->
+    <div data-include="blocks/widgets/princely-articles-list.html"></div>
+
+</div>

@@ -1,0 +1,23 @@
+<!-- blocks/layouts/folder-details-layout.html -->
+<div class="w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+
+        <!-- MAIN CONTENT -->
+        <section class="lg:col-span-9 flex flex-col lg:border-r border-gray-200 lg:pe-8">
+            <!-- Breadcrumb + image + buttons -->
+            <div data-include="blocks/widgets/folder-details-header.html"></div>
+
+            <!-- "A lire sur ce dossier" — dossier article list -->
+            <div class="mt-8 lg:mt-10" data-include="blocks/widgets/dossier-articles-list.html"></div>
+        </section>
+
+        <!-- RIGHT SIDEBAR -->
+        <aside class="order-2 lg:order-2 lg:col-span-3 flex flex-col gap-5">
+            <!-- Médiathèque Royale (same widget used across the site) -->
+            <div data-include="blocks/widgets/royal-media.html"></div>
+            <div data-include="blocks/widgets/right-folders.html"></div>
+            <div data-include="blocks/widgets/right-testimonies.html"></div>
+        </aside>
+
+    </div>
+</div>

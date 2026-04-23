@@ -1,0 +1,23 @@
+<!-- blocks/layouts/princely-activities-layout.html -->
+<div class="w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+
+        <!-- MAIN CONTENT (9 cols) -->
+        <section class="order-1 lg:order-1 lg:col-span-9 flex flex-col gap-4 lg:border-r border-gray-200 lg:pe-12">
+            <div data-include="blocks/widgets/princely-activities-news-list.html"></div>
+        </section>
+
+        <!-- RIGHT SIDEBAR (3 cols) — shared with royal-activities -->
+        <aside class="order-2 lg:order-2 lg:col-span-3 flex flex-col gap-5">
+            <!-- Multimedia Royale Grid -->
+            <div data-include="blocks/widgets/royal-media.html"></div>
+                                        
+            <!-- Folders Banner -->
+            <div data-include="blocks/widgets/right-folders.html"></div>
+
+            <!-- Testimonies Banner -->
+            <div data-include="blocks/widgets/right-testimonies.html"></div>
+        </aside>
+
+    </div>
+</div>
