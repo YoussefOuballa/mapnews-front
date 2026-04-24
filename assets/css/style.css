@@ -17,6 +17,18 @@
     font-family: 'Cairo', sans-serif;
 } */
 
+body {
+    font-family: 'Inter', 'Cairo', sans-serif;
+}
+
+.font-sans {
+    font-family: 'Inter', 'Cairo', sans-serif;
+}
+
+.font-serif {
+    font-family: 'Barlow Condensed', 'Cairo', serif;
+}
+
 /* =========================================
    TOPBAR STYLES
    ========================================= */
@@ -197,7 +209,7 @@
 .ticker-item {
     display: inline-flex;
     align-items: center;
-    margin-inline-end: 0.5rem; /* Space between individual news items */
+    margin-inline-end: 3rem; /* Space between individual news items */
     font-size: 0.85rem;
     font-weight: 500;
     color: #191919;
