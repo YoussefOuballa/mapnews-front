@@ -11,6 +11,9 @@
     /* HERO SECTION */
     --color-badge: #9F8E75; /* The brown/taupe category color */
     --color-heading: #0B1D32; /* The deep navy text color */
+
+    --font-sans: 'Inter', 'Cairo', sans-serif;
+    --font-serif: 'Barlow Condensed', 'Cairo', serif;
 }
 
 /* html[dir="rtl"] { 
@@ -18,15 +21,15 @@
 } */
 
 body {
-    font-family: 'Inter', 'Cairo', sans-serif;
+    font-family: var(--font-sans);
 }
 
 .font-sans {
-    font-family: 'Inter', 'Cairo', sans-serif;
+    font-family: var(--font-sans);
 }
 
 .font-serif {
-    font-family: 'Barlow Condensed', 'Cairo', serif;
+    font-family: var(--font-serif);
 }
 
 /* =========================================
@@ -95,7 +98,16 @@ body {
     font-weight: 500;
     transition: background-color 0.2s;
 }
+
 .btn-solid:hover { background-color: var(--color-primary-hover); }
+
+.bg-primary {
+    background-color: var(--color-primary);
+}
+
+.bg-danger {
+    background-color: var(--color-danger);
+}
 
 /* =========================================
    NAVBAR STYLES
