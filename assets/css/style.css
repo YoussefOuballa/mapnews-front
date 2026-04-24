@@ -32,6 +32,14 @@ body {
     font-family: var(--font-serif);
 }
 
+.text-primary {
+    color: rgb(0 94 184 / var(--tw-text-opacity, 1));
+}
+
+.text-danger {
+    color: rgb(230 46 77 / var(--tw-text-opacity, 1));
+}
+
 /* =========================================
    TOPBAR STYLES
    ========================================= */
@@ -315,6 +323,26 @@ html[dir="rtl"] .ticker-content {
 }
 .splide__arrow {
     border: 1px solid #AEAEAE;
+    width: 50px;
+    height: 50px;
+    background: #FFFFFF;
+    --tw-translate-y: 0;
+}
+
+.lg\:-left-16 {
+    left: -4rem;
+}
+
+.lg\:-right-16 {
+    right: -4rem;
+}
+
+.bg-white {
+    background-color: #FFF;
+}
+
+.z-10 {
+    z-index: 10;
 }
 
 .splide__arrow:hover {
@@ -328,4 +356,8 @@ html[dir="rtl"] .ticker-content {
 .hide-scrollbar {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;     /* Firefox */
+}
+
+.leading-\[33\.57px\] {
+    line-height: 33.57px;
 }

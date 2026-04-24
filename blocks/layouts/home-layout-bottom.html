@@ -3,23 +3,19 @@
     <!-- 12-column grid -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
 
-        <!-- ==============================================
-             MAIN CONTENT (Left Side - 9 Columns)
-             ============================================== -->
+        <!-- MAIN CONTENT (Center) -->
         <section class="lg:col-span-9 flex flex-col">
 
             <section class="w-full mx-auto">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-x-8 lg:border-e border-gray-200 px-0 lg:px-4" 
-                     data-include="blocks/widgets/category-grids.html">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-2 lg:gap-x-8 lg:border-e border-gray-200 px-0 lg:px-4">
+                    <div data-include="blocks/widgets/category-grids.html" class="contents"></div>
                 </div>
             </section>
 
         </section>
 
-        <!-- ==============================================
-             RIGHT SIDEBAR (Right Side - 3 Columns)
-             ============================================== -->
-        <aside class="lg:col-span-3 flex flex-col gap-5 lg:ps-2">
+        <!-- RIGHT SIDEBAR -->
+        <aside class="lg:col-span-3 flex flex-col gap-5">
 
             <!-- FAAPA Block -->
             <div data-include="blocks/widgets/right-faapa.html"></div>
