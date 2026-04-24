@@ -1809,6 +1809,9 @@
   .bg-\[url\(\'assets\/images\/zelij-footer\.svg\'\)\] {
     background-image: url('../../assets/images/zelij-footer.svg');
   }
+  .bg-\[url\(\'assets\/images\/zelij-footer\.png\'\)\] {
+    background-image: url('../../assets/images/zelij-footer.png');
+  }
   .bg-\[url\(\'assets\/images\/zelij\.png\'\)\] {
     background-image: url('../../assets/images/zelij.png');
   }
