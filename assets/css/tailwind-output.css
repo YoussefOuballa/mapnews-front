@@ -1815,6 +1815,15 @@
   .bg-\[url\(\'assets\/images\/zelij\.png\'\)\] {
     background-image: url('../../assets/images/zelij.png');
   }
+  .bg-cover {
+    background-size: cover;
+  }
+  .bg-center {
+      background-position: center;
+  }
+  .bg-no-repeat {
+    background-repeat: no-repeat;
+  }
   .from-\[\#005EB8\] {
     --tw-gradient-from: #005EB8;
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
